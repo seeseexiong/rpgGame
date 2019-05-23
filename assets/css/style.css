@@ -1,0 +1,44 @@
+.wraper {
+    height: 200px;
+    margin-right: 90px;
+    margin-left: 90px;
+}
+
+
+/* Mark BACKGROUND Color */
+#myCharacter {
+    background-color: aquamarine;
+    margin-top: 20px;
+    /* position: relative; */
+}
+
+#enemies {
+    background-color: blueviolet;
+    clear: both;
+}
+
+#defender {
+    background-color: yellow;
+    /* clear: both; */
+}
+
+/* ------------- these classes are created from JS -------------------- */
+.characterBox {
+    width: 220px;
+    height: 150px;
+    border: black 1px solid;
+    margin-left: 20px;
+    float: left;
+    position: relative;
+}
+
+.floatName {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 5px;
+}
+
+.imgSize {
+    height: 150px;
+}
