@@ -1,8 +1,9 @@
 $(document).ready(function() {
-    
-    // -----------------------------------------------------------
-
-    // an array of objects
+    // Global scope variables -----------------------------------------------------------
+    let myCharacterDiv = $('#myCharacter')
+    let enemiesDiv     = $('#enemies')
+    let defenderDiv    = $('#defender')
+    // an array of objects ---------------------------------------
     let characterInfo = [{
         name    : 'Goku',
         photo   : 'assets/images/goku.png',
@@ -45,10 +46,8 @@ $(document).ready(function() {
         }
     }]; //ends characterInfo array 
 
-    //Create 4 boxes
-        //-------- Reference to myCharacter Div
-    let myCharacterDiv = $('#myCharacter')
-
+    //Create 4 boxes and display the objects image, name, hp
+    
     for ( let i = 0; i < characterInfo.length; i++ ) {
         // create a box and place it in myCharacter Div
         let characterDiv = $('<div>')
@@ -57,8 +56,9 @@ $(document).ready(function() {
         let charHp= $('<h5>')
 
         //add class - this class makes the border
-        characterDiv.addClass('characterBox')
-
+        characterDiv.addClass('individualBox') // ---* * * * * * * * CLASS
+        characterDiv.attr('value', characterInfo[i].name) 
+        characterDiv.attr('chosen', 'false')
         //add image inside characterDiv
         image.addClass('imgSize')
         image.attr('src', characterInfo[i].photo) 
@@ -71,19 +71,25 @@ $(document).ready(function() {
         charName.addClass('floatName')
         
         //append it on DOM
-        charName.append(charHp)
         characterDiv.append(image, charName)
+        charName.append(charHp)
         myCharacterDiv.append(characterDiv)
-        
+    };
 
-        //if click on it then it moves to defender Div
-            //it should move the: characterDiv and img
-        // $('.characterBox').on('click', function() {
-        //     characterDiv.empty()
-        //     let defenderDiv = $('#defender')
-        //     defenderDiv.append(characterDiv)
-        //     characterDiv.append(image)
-        // })
-    }
+
+    // P I C K   Y O U R   C H A R A C T E R - - - - - - - - - - - - -
+    $('.individualBox').on('click', function() {
+        playerName = $(this).attr('value'); 
+        console.log('You clicked on ' + playerName);
+
+        // if clicked on, change that character's chosen object to true
+        // log all the false on console
+        $(this).attr('chosen', 'true')
+        
+        //all the chosen attribute with 'false' values moves to the enemiesDiv
+        enemiesDiv.append( $('[chosen = "false"]') );
+    })
+
+    // P I C K   Y O U R   D E F E N D E R - - - - - - - - - - -
 
 }); 

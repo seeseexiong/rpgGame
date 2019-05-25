@@ -23,7 +23,7 @@
 }
 
 /* ------------- these classes are created from JS -------------------- */
-.characterBox {
+.individualBox {
     width: 220px;
     height: 150px;
     border: black 1px solid;
