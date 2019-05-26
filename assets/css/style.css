@@ -1,7 +1,7 @@
 .wraper {
     height: 200px;
-    margin-right: 90px;
-    margin-left: 90px;
+    margin-right: 30px;
+    margin-left: 30px;
 }
 
 
@@ -9,7 +9,6 @@
 #myCharacter {
     background-color: aquamarine;
     margin-top: 20px;
-    /* position: relative; */
 }
 
 #enemies {
@@ -19,7 +18,6 @@
 
 #defender {
     background-color: yellow;
-    /* clear: both; */
 }
 
 /* ------------- these classes are created from JS -------------------- */
@@ -41,4 +39,52 @@
 
 .imgSize {
     height: 150px;
+}
+
+
+
+/*  R E S P O N S I V E  ==================================================================== */
+@media screen and (max-width: 720px) {
+    .individualBox {
+        width: 120px;
+        height: 120px;
+        border: black 1px solid;
+        margin-left: 20px;
+        float: left;
+        position: relative;
+    }
+    
+    .imgSize {
+        height: 90px;
+    }
+
+    .fontSize {
+        font-size: 15px;
+    }
+}
+
+
+@media screen and (max-width: 511px) {
+    .individualBox {
+        width: 80px;
+        height: 80px;
+        border: black 1px solid;
+        margin-left: 20px;
+        float: left;
+        position: relative;
+    }
+    
+    .imgSize {
+        height: 70px;
+    }
+
+    .fontSize {
+        font-size: 10px;
+    }
+    /* no margins */
+    .wraper {
+        height: 200px;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
 }

@@ -3,6 +3,10 @@ $(document).ready(function() {
     let myCharacterDiv = $('#myCharacter')
     let enemiesDiv     = $('#enemies')
     let defenderDiv    = $('#defender')
+
+    let neutralStat    = $('[status = "neutralStat"]')
+
+
     // an array of objects ---------------------------------------
     let characterInfo = [{
         name    : 'Goku',
@@ -54,18 +58,22 @@ $(document).ready(function() {
         let image = $('<img>')
         let charName = $('<h5>')
         let charHp= $('<h5>')
-
+        
         //add class - this class makes the border
-        characterDiv.addClass('individualBox') // ---* * * * * * * * CLASS
+        characterDiv.addClass('individualBox freeCharacter') // ---* * * * * * * * CLASS
         characterDiv.attr('value', characterInfo[i].name) 
-        characterDiv.attr('chosen', 'false')
+            //on default, all character have a value called neutralStat
+        characterDiv.attr('status', 'neutralStat')
+
         //add image inside characterDiv
         image.addClass('imgSize')
         image.attr('src', characterInfo[i].photo) 
 
         //add character info inside characterDiv
         charName.text(characterInfo[i].name)
+        charName.addClass('fontSize')
         charHp.text('hp:' + characterInfo[i].hp)
+        charHp.addClass('fontSize')
 
         //float character's name to top right corner
         charName.addClass('floatName')
@@ -78,18 +86,44 @@ $(document).ready(function() {
 
 
     // P I C K   Y O U R   C H A R A C T E R - - - - - - - - - - - - -
-    $('.individualBox').on('click', function() {
-        playerName = $(this).attr('value'); 
-        console.log('You clicked on ' + playerName);
+    $('.freeCharacter').on('click', function() {
 
-        // if clicked on, change that character's chosen object to true
-        // log all the false on console
-        $(this).attr('chosen', 'true')
+        // if clicked on, change that character's value to 'theChosenCharacter' to mark it as your chosen
+        $(this).attr('status', 'theChosenCharacter')
         
-        //all the chosen attribute with 'false' values moves to the enemiesDiv
-        enemiesDiv.append( $('[chosen = "false"]') );
-    })
+        //change the class: 'neutralStat' to 'theEnemies'
+        $('[status = "neutralStat"]').addClass('enemyBox').removeClass('freeCharacter')
+        
 
-    // P I C K   Y O U R   D E F E N D E R - - - - - - - - - - -
+        //all class of 'enemyBox' move down to the enemiesDiv
+        enemiesDiv.append( $('.enemyBox') );
+        //change the value: 'neutralStat' to 'theEnemies'
+        $('.enemyBox').attr('status', 'theEnemies')
 
+
+        // P I C K   Y O U R   D E F E N D E R - - - - - - - - - - - (this click event handler is inside of .freeCharacter click handler because .enemyBox is child scope of .freeCharacter click handler)
+        //when I click on the enemyBox class.. 
+        $('.enemyBox').on('click', function() {
+            
+            //change that character's value to 'theDefender'
+            $(this).attr('status', 'theDefender')  
+
+            //change class
+            $('[status = "theDefender"]').addClass('defenderBox').removeClass('enemyBox')
+
+            //move class defenderBox to the defenderDiv
+            defenderDiv.append( $('.defenderBox'))
+
+        });
+
+    });
+
+
+    // ------------------------ G O O D --------------------- * * * * * * * * * 
+
+
+
+
+
+    
 }); 
